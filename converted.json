@@ -25,6 +25,10 @@
   {
     "name": "httpConfigurations",
     "description": "HTTP Configuration are used to configure various options to be used by the Gateway for HTTP/HTTPS connections. For example, you can configure the login credentials for an HTTPS host, define a proxy for the host, or specify a private key to be used for authentication."
+  },
+  {
+    "name": "identityProviders",
+    "description": "An Identity provider is used to store and provide identities."
   }],
   "security": [{
     "simple": []
@@ -656,6 +660,632 @@
       }
     },
 
+    "/1.0/identityProviders": {
+      "get": {
+        "tags": ["identityProviders"],
+        "description": "<p>Returns a list of identity providers. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p class=\"italicize\">Examples:</p>\n <div class=\"code indent\"><pre>/restman/1.0/identityProviders?name=MyIDProvider</pre></div>\n <p>Returns identity provider with name \"MyIDProvider\".</p>\n <div class=\"code indent\"><pre>/restman/1.0/identityProviders?type=LDAP</pre></div>\n <p>Returns identity providers of LDAP type</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList",
+        "summary": "List All Identity Providers",
+        "operationId": "IdentityProvidersGet",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "sort",
+          "in": "query",
+          "required": false,
+          "enum": ["id", "name", "type"],
+          "type": "string",
+          "description": "Key to sort the list by"
+        }, {
+          "name": "order",
+          "in": "query",
+          "required": false,
+          "enum": ["asc", "desc"],
+          "type": "string",
+          "description": "Sort order for the list; 'asc'=ascending, 'desc'=descending; defaults to\n                        ascending if not specified"
+        }, {
+          "name": "name",
+          "in": "query",
+          "required": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Name filter"
+        }, {
+          "name": "type",
+          "in": "query",
+          "required": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Type filter"
+        }, {
+          "name": "securityZone.id",
+          "in": "query",
+          "required": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Security zone ID filter"
+        }],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{"simple": []}]
+      },
+      "post": {
+        "tags": ["identityProviders"],
+        "description": "Creates an identity provider\r\nCreate",
+        "summary": "Create an Identity Providers",
+        "operationId": "IdentityProvidersPost",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "String",
+          "in": "body",
+          "required": true,
+          "description": "",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "object"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{"simple": []}]
+      }
+    },
+    "/1.0/identityProviders/template": {
+      "get": {
+        "tags": ["identityProviders"],
+        "description": "Returns a template, which is an example identity provider that can be used as a reference for what identity\n provider objects should look like.\r\nTemplate",
+        "summary": "Identity Providers Template",
+        "operationId": "IdentityProvidersTemplateGet",
+        "produces": ["application/xml"],
+        "parameters": [],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{"simple": []}]
+      }
+    },
+    "/1.0/identityProviders/{identityProviderID}": {
+      "get": {
+        "tags": ["identityProviders"],
+        "description": "Returns an identity provider with the given ID.\r\nGet",
+        "summary": "List Identity Providers By Identity Provider ID",
+        "operationId": "IdentityProvidersByIdentityProviderIDGet",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "identityProviderID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "The ID of the identity provider to return"
+        }],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{"simple": []}]
+      },
+      "put": {
+        "tags": ["identityProviders"],
+        "description": "Creates or Updates an existing identity provider. If an identity provider with the given ID does not exist one\n will be created, otherwise the existing one will be updated.\r\nCreate Or Update",
+        "summary": "Create or Update Identity Providers By Identity Provider ID",
+        "operationId": "IdentityProvidersByIdentityProviderIDPut",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "identityProviderID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "ID of the identity provider to create or update"
+        }, {
+          "name": "String",
+          "in": "body",
+          "required": true,
+          "description": "",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "object"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{"simple": []}]
+      },
+      "delete": {
+        "tags": ["identityProviders"],
+        "description": "Deletes an existing identity provider.\r\nDelete",
+        "summary": "Delete Identity Providers By Identity Provider ID",
+        "operationId": "IdentityProvidersByIdentityProviderIDDelete",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "identityProviderID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "The ID of the identity provider to delete."
+        }],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [{"simple": []}]
+      }
+    },
+    "/1.0/identityProviders/{identityProviderID}/groups": {
+      "get": {
+        "tags": ["identityProviders"],
+        "description": "<p>Returns a list of groups. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList Groups",
+        "summary": "List All Identity Providers Groups",
+        "operationId": "IdentityProvidersGroupsByIdentityProviderIDGet",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "identityProviderID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": ""
+        }, {
+          "name": "sort",
+          "in": "query",
+          "required": false,
+          "enum": ["id", "name"],
+
+          "type": "string",
+          "description": "Key to sort the list by."
+        }, {
+          "name": "order",
+          "in": "query",
+          "required": false,
+          "enum": ["asc", "desc"],
+
+          "type": "string",
+          "description": "Sort order for the list; 'asc'=ascending, 'desc'=descending; defaults to\n              ascending if not specified"
+        }, {
+          "name": "name",
+          "in": "query",
+          "required": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Name filter"
+        }],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{"simple": []}]
+      }
+    },
+    "/1.0/identityProviders/{identityProviderID}/groups/template": {
+      "get": {
+        "tags": ["identityProviders"],
+        "description": "Returns a template, which is an example group that can be used as a reference for what group objects should look\n like.\r\nGroup Template",
+        "summary": " Identity Providers Groups Template",
+        "operationId": "IdentityProvidersGroupsTemplateByIdentityProviderIDGet",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "identityProviderID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": ""
+        }],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{"simple": []}]
+      }
+    },
+    "/1.0/identityProviders/{identityProviderID}/groups/{groupID}": {
+      "get": {
+        "tags": ["identityProviders"],
+        "description": "Returns a group with the given ID.\r\nGet Group",
+        "summary": "List Identity Providers Groups By ID",
+        "operationId": "IdentityProvidersGroupsByIdentityProviderIDAndGroupIDGet",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "groupID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "The ID of the group to return"
+        }, {
+          "name": "identityProviderID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": ""
+        }],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{"simple": []}]
+      }
+    },
+    "/1.0/identityProviders/{identityProviderID}/users": {
+      "get": {
+        "tags": ["identityProviders"],
+        "description": "<p>Returns a list of users. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList Users",
+        "summary": "List All Identity Providers Users",
+        "operationId": "IdentityProvidersUsersByIdentityProviderIDGet",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "identityProviderID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": ""
+        }, {
+          "name": "sort",
+          "in": "query",
+          "required": false,
+          "enum": ["id", "login"],
+          "type": "string",
+          "description": "Key to sort the list by."
+        }, {
+          "name": "order",
+          "in": "query",
+          "required": false,
+          "enum": ["asc", "desc"],
+
+          "type": "string",
+          "description": "Sort order for the list; 'asc'=ascending, 'desc'=descending; defaults to\n               ascending if not specified"
+        }, {
+          "name": "login",
+          "in": "query",
+          "required": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Login filter"
+        }],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{"simple": []}]
+      },
+      "post": {
+        "tags": ["identityProviders"],
+        "description": "Creates a new user. New users can only be created on the internal identity provider.\r\nCreate User",
+        "summary": "Creates New Identity Providers Users",
+        "operationId": "IdentityProvidersUsersByIdentityProviderIDPost",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "String",
+          "in": "body",
+          "required": true,
+          "description": "",
+          "schema": {
+            "type": "string"
+          }
+        }, {
+          "name": "identityProviderID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": ""
+        }],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "object"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{"simple": []}]
+      }
+    },
+    "/1.0/identityProviders/{identityProviderID}/users/{userID}/password": {
+      "put": {
+        "tags": ["identityProviders"],
+        "description": "Change this user's password\r\nChange User Password",
+        "summary": "Update Identity Providers Users Password",
+        "operationId": "IdentityProvidersUsersPasswordByIdentityProviderIDAndUserIDPut",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "userID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "The ID of the user"
+        }, {
+          "name": "String",
+          "in": "body",
+          "required": true,
+          "description": "",
+          "schema": {
+            "type": "string"
+          }
+        }, {
+          "name": "identityProviderID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": ""
+        }, {
+          "name": "format",
+          "in": "query",
+          "required": false,
+          "default": "plain",
+          "type": "string",
+          "description": "The format of the password. \"plain\" or \"sha512crypt\""
+        }],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{"simple": []}]
+      }
+    },
+    "/1.0/identityProviders/{identityProviderID}/users/template": {
+      "get": {
+        "tags": ["identityProviders"],
+        "description": "Returns a template, which is an example user that can be used as a reference for what user objects should look\n like.\r\nTemplate User",
+        "summary": "Identity Providers Users Template",
+        "operationId": "IdentityProvidersUsersTemplateByIdentityProviderIDGet",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "identityProviderID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": ""
+        }],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{"simple": []}]
+      }
+    },
+    "/1.0/identityProviders/{identityProviderID}/users/{userID}": {
+      "get": {
+        "tags": ["identityProviders"],
+        "description": "Returns a user with the given ID.\r\nGet User",
+        "summary": "List Identity Providers Users By ID",
+        "operationId": "IdentityProvidersUsersByIdentityProviderIDAndUserIDGet",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "userID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "The ID of the user to return"
+        }, {
+          "name": "identityProviderID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": ""
+        }],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{"simple": []}]
+      },
+      "put": {
+        "tags": ["identityProviders"],
+        "description": "Updates an existing user\r\nUpdate User",
+        "summary": "Update Identity Providers Users By ID",
+        "operationId": "IdentityProvidersUsersByIdentityProviderIDAndUserIDPut",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "userID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "The ID of the user to update"
+        }, {
+          "name": "String",
+          "in": "body",
+          "required": true,
+          "description": "",
+          "schema": {
+            "type": "string"
+          }
+        }, {
+          "name": "identityProviderID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": ""
+        }],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "object"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{"simple": []}]
+      },
+      "delete": {
+        "tags": ["identityProviders"],
+        "description": "Deletes an existing user\r\nDelete User",
+        "summary": "Delete Identity Providers Users By ID",
+        "operationId": "10IdentityProvidersUsersByIdentityProviderIDAndUserIDDelete",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "userID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "The ID of the user to delete."
+        }, {
+          "name": "identityProviderID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": ""
+        }],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [{"simple": []}]
+      }
+    },
+    "/1.0/identityProviders/{identityProviderID}/users/{userID}/certificate": {
+      "get": {
+        "tags": ["identityProviders"],
+        "description": "Gets the user's certificate\r\nGet User Certificate",
+        "summary": "List Identity Providers Users Certificate By ID",
+        "operationId": "10IdentityProvidersUsersCertificateByIdentityProviderIDAndUserIDGet",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "userID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "The ID of the user"
+        }, {
+          "name": "identityProviderID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": ""
+        }],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{"simple": []}]
+      },
+      "put": {
+        "tags": ["identityProviders"],
+        "description": "Set this user's certificate\r\nSet User Certificate",
+        "summary": "Set Identity Providers Users Certificate By ID",
+        "operationId": "IdentityProvidersUsersCertificateByIdentityProviderIDAndUserIDPut",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "userID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "The ID of the user"
+        }, {
+          "name": "String",
+          "in": "body",
+          "required": true,
+          "description": "",
+          "schema": {
+            "type": "string"
+          }
+        }, {
+          "name": "identityProviderID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": ""
+        }],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{"simple": []}]
+      },
+      "delete": {
+        "tags": ["identityProviders"],
+        "description": "Removes the certificate from the user\r\nDelete User Certificate",
+        "summary": "Delete Identity Providers Users Certificate By ID",
+        "operationId": "10IdentityProvidersUsersCertificateByIdentityProviderIDAndUserIDDelete",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "userID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "The ID of the user"
+        }, {
+          "name": "identityProviderID",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": ""
+        }],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [{"simple": []}]
+      }
+    },
+
     "/1.0/interfaceTags": {
       "get": {
         "tags": ["InterfaceTags"],
@@ -1085,612 +1715,19 @@
       }
     },
 
-    "/1.0/identityProviders": {
-      "get": {
-        "description": "<p>Returns a list of identity providers. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p class=\"italicize\">Examples:</p>\n <div class=\"code indent\"><pre>/restman/1.0/identityProviders?name=MyIDProvider</pre></div>\n <p>Returns identity provider with name \"MyIDProvider\".</p>\n <div class=\"code indent\"><pre>/restman/1.0/identityProviders?type=LDAP</pre></div>\n <p>Returns identity providers of LDAP type</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList",
-        "summary": "10IdentityProviders",
-        "operationId": "10IdentityProvidersGet",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "sort",
-          "in": "query",
-          "required": false,
-          "enum": ["id", "name", "type"],
-          "type": "string",
-          "description": "Key to sort the list by"
-        }, {
-          "name": "order",
-          "in": "query",
-          "required": false,
-          "enum": ["asc", "desc"],
-          "type": "string",
-          "description": "Sort order for the list; 'asc'=ascending, 'desc'=descending; defaults to\n                        ascending if not specified"
-        }, {
-          "name": "name",
-          "in": "query",
-          "required": false,
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Name filter"
-        }, {
-          "name": "type",
-          "in": "query",
-          "required": false,
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Type filter"
-        }, {
-          "name": "securityZone.id",
-          "in": "query",
-          "required": false,
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Security zone ID filter"
-        }],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{"simple": []}]
-      },
-      "post": {
-        "description": "Creates an identity provider\r\nCreate",
-        "summary": "10IdentityProviders",
-        "operationId": "10IdentityProvidersPost",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "String",
-          "in": "body",
-          "required": true,
-          "description": "",
-          "schema": {
-            "type": "string"
-          }
-        }],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "object"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{"simple": []}]
-      }
-    },
-    "/1.0/identityProviders/template": {
-      "get": {
-        "description": "Returns a template, which is an example identity provider that can be used as a reference for what identity\n provider objects should look like.\r\nTemplate",
-        "summary": "10IdentityProvidersTemplate",
-        "operationId": "10IdentityProvidersTemplateGet",
-        "produces": ["application/xml"],
-        "parameters": [],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{"simple": []}]
-      }
-    },
-    "/1.0/identityProviders/{identityProviderID}": {
-      "get": {
-        "description": "Returns an identity provider with the given ID.\r\nGet",
-        "summary": "10IdentityProvidersByIdentityProviderID",
-        "operationId": "10IdentityProvidersByIdentityProviderIDGet",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "identityProviderID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": "The ID of the identity provider to return"
-        }],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{"simple": []}]
-      },
-      "put": {
-        "description": "Creates or Updates an existing identity provider. If an identity provider with the given ID does not exist one\n will be created, otherwise the existing one will be updated.\r\nCreate Or Update",
-        "summary": "10IdentityProvidersByIdentityProviderID",
-        "operationId": "10IdentityProvidersByIdentityProviderIDPut",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "identityProviderID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": "ID of the identity provider to create or update"
-        }, {
-          "name": "String",
-          "in": "body",
-          "required": true,
-          "description": "",
-          "schema": {
-            "type": "string"
-          }
-        }],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "object"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{"simple": []}]
-      },
-      "delete": {
-        "description": "Deletes an existing identity provider.\r\nDelete",
-        "summary": "10IdentityProvidersByIdentityProviderID",
-        "operationId": "10IdentityProvidersByIdentityProviderIDDelete",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "identityProviderID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": "The ID of the identity provider to delete."
-        }],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [{"simple": []}]
-      }
-    },
-    "/1.0/identityProviders/{identityProviderID}/groups": {
-      "get": {
-        "description": "<p>Returns a list of groups. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList Groups",
-        "summary": "10IdentityProvidersGroups",
-        "operationId": "10IdentityProvidersGroupsByIdentityProviderIDGet",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "identityProviderID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": ""
-        }, {
-          "name": "sort",
-          "in": "query",
-          "required": false,
-          "enum": ["id", "name"],
 
-          "type": "string",
-          "description": "Key to sort the list by."
-        }, {
-          "name": "order",
-          "in": "query",
-          "required": false,
-          "enum": ["asc", "desc"],
 
-          "type": "string",
-          "description": "Sort order for the list; 'asc'=ascending, 'desc'=descending; defaults to\n              ascending if not specified"
-        }, {
-          "name": "name",
-          "in": "query",
-          "required": false,
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Name filter"
-        }],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{"simple": []}]
-      }
-    },
-    "/1.0/identityProviders/{identityProviderID}/groups/template": {
-      "get": {
-        "description": "Returns a template, which is an example group that can be used as a reference for what group objects should look\n like.\r\nGroup Template",
-        "summary": "10IdentityProvidersGroupsTemplate",
-        "operationId": "10IdentityProvidersGroupsTemplateByIdentityProviderIDGet",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "identityProviderID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": ""
-        }],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{"simple": []}]
-      }
-    },
-    "/1.0/identityProviders/{identityProviderID}/groups/{groupID}": {
-      "get": {
-        "description": "Returns a group with the given ID.\r\nGet Group",
-        "summary": "10IdentityProvidersGroups",
-        "operationId": "10IdentityProvidersGroupsByIdentityProviderIDAndGroupIDGet",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "groupID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": "The ID of the group to return"
-        }, {
-          "name": "identityProviderID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": ""
-        }],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{"simple": []}]
-      }
-    },
-    "/1.0/identityProviders/{identityProviderID}/users": {
-      "get": {
-        "description": "<p>Returns a list of users. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList Users",
-        "summary": "10IdentityProvidersUsers",
-        "operationId": "10IdentityProvidersUsersByIdentityProviderIDGet",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "identityProviderID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": ""
-        }, {
-          "name": "sort",
-          "in": "query",
-          "required": false,
-          "enum": ["id", "login"],
-          "type": "string",
-          "description": "Key to sort the list by."
-        }, {
-          "name": "order",
-          "in": "query",
-          "required": false,
-          "enum": ["asc", "desc"],
 
-          "type": "string",
-          "description": "Sort order for the list; 'asc'=ascending, 'desc'=descending; defaults to\n               ascending if not specified"
-        }, {
-          "name": "login",
-          "in": "query",
-          "required": false,
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Login filter"
-        }],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{"simple": []}]
-      },
-      "post": {
-        "description": "Creates a new user. New users can only be created on the internal identity provider.\r\nCreate User",
-        "summary": "10IdentityProvidersUsers",
-        "operationId": "10IdentityProvidersUsersByIdentityProviderIDPost",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "String",
-          "in": "body",
-          "required": true,
-          "description": "",
-          "schema": {
-            "type": "string"
-          }
-        }, {
-          "name": "identityProviderID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": ""
-        }],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "object"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{"simple": []}]
-      }
-    },
-    "/1.0/identityProviders/{identityProviderID}/users/{userID}/password": {
-      "put": {
-        "description": "Change this user's password\r\nChange User Password",
-        "summary": "10IdentityProvidersUsersPassword",
-        "operationId": "10IdentityProvidersUsersPasswordByIdentityProviderIDAndUserIDPut",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "userID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": "The ID of the user"
-        }, {
-          "name": "String",
-          "in": "body",
-          "required": true,
-          "description": "",
-          "schema": {
-            "type": "string"
-          }
-        }, {
-          "name": "identityProviderID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": ""
-        }, {
-          "name": "format",
-          "in": "query",
-          "required": false,
-          "default": "plain",
-          "type": "string",
-          "description": "The format of the password. \"plain\" or \"sha512crypt\""
-        }],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{"simple": []}]
-      }
-    },
-    "/1.0/identityProviders/{identityProviderID}/users/template": {
-      "get": {
-        "description": "Returns a template, which is an example user that can be used as a reference for what user objects should look\n like.\r\nTemplate User",
-        "summary": "10IdentityProvidersUsersTemplate",
-        "operationId": "10IdentityProvidersUsersTemplateByIdentityProviderIDGet",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "identityProviderID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": ""
-        }],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{"simple": []}]
-      }
-    },
-    "/1.0/identityProviders/{identityProviderID}/users/{userID}": {
-      "get": {
-        "description": "Returns a user with the given ID.\r\nGet User",
-        "summary": "10IdentityProvidersUsers",
-        "operationId": "10IdentityProvidersUsersByIdentityProviderIDAndUserIDGet",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "userID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": "The ID of the user to return"
-        }, {
-          "name": "identityProviderID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": ""
-        }],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{"simple": []}]
-      },
-      "put": {
-        "description": "Updates an existing user\r\nUpdate User",
-        "summary": "10IdentityProvidersUsers",
-        "operationId": "10IdentityProvidersUsersByIdentityProviderIDAndUserIDPut",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "userID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": "The ID of the user to update"
-        }, {
-          "name": "String",
-          "in": "body",
-          "required": true,
-          "description": "",
-          "schema": {
-            "type": "string"
-          }
-        }, {
-          "name": "identityProviderID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": ""
-        }],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "object"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{"simple": []}]
-      },
-      "delete": {
-        "description": "Deletes an existing user\r\nDelete User",
-        "summary": "10IdentityProvidersUsers",
-        "operationId": "10IdentityProvidersUsersByIdentityProviderIDAndUserIDDelete",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "userID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": "The ID of the user to delete."
-        }, {
-          "name": "identityProviderID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": ""
-        }],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [{"simple": []}]
-      }
-    },
-    "/1.0/identityProviders/{identityProviderID}/users/{userID}/certificate": {
-      "get": {
-        "description": "Gets the user's certificate\r\nGet User Certificate",
-        "summary": "10IdentityProvidersUsersCertificate",
-        "operationId": "10IdentityProvidersUsersCertificateByIdentityProviderIDAndUserIDGet",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "userID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": "The ID of the user"
-        }, {
-          "name": "identityProviderID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": ""
-        }],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{"simple": []}]
-      },
-      "put": {
-        "description": "Set this user's certificate\r\nSet User Certificate",
-        "summary": "10IdentityProvidersUsersCertificate",
-        "operationId": "10IdentityProvidersUsersCertificateByIdentityProviderIDAndUserIDPut",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "userID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": "The ID of the user"
-        }, {
-          "name": "String",
-          "in": "body",
-          "required": true,
-          "description": "",
-          "schema": {
-            "type": "string"
-          }
-        }, {
-          "name": "identityProviderID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": ""
-        }],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{"simple": []}]
-      },
-      "delete": {
-        "description": "Removes the certificate from the user\r\nDelete User Certificate",
-        "summary": "10IdentityProvidersUsersCertificate",
-        "operationId": "10IdentityProvidersUsersCertificateByIdentityProviderIDAndUserIDDelete",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "userID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": "The ID of the user"
-        }, {
-          "name": "identityProviderID",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": ""
-        }],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [{"simple": []}]
-      }
-    },
+
+
+
+
+
+
+
+
+
+
     "/1.0/siteMinderConfigurations": {
       "get": {
         "description": "<p>Returns a list of SiteMinder configurations. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p class=\"italicize\">Examples:</p>\n <div class=\"code indent\"><pre>/restman/1.0/siteMinderConfigurations?name=MySiteMinderConfiguration</pre></div>\n <p>Returns SiteMinder configuration with name \"MySiteMinderConfiguration\".</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList",
