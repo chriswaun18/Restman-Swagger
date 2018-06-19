@@ -52,7 +52,7 @@ YmplY3Q+CjwvamF2YT4K</Props>
                 <L7p:Parameters mapValue="included">
                     <L7p:entry>
                         <L7p:key stringValue="method"/>
-                        <L7p:value stringValue="GET|POST|OPTIONS"/>
+                        <L7p:value stringValue="GET|PUT|DELETE|POST|OPTIONS"/>
                     </L7p:entry>
                 </L7p:Parameters>
             </L7p:Encapsulated>
