@@ -7,6 +7,20 @@
   },
   "host": "ssg92.ca.com:8443",
   "basePath": "/restman/",
+  "tags": [
+    {
+          "name": "GenericEntities",
+          "description": "A generic entities is used by some modular assertions to represent any entity."
+    }
+  ],
+  "security": [{
+    "simple": []
+  }],
+  "securityDefinitions": {
+    "simple": {
+      "type": "basic"
+    }
+  },
   "schemes": [
     "https"
   ],
@@ -19,11 +33,14 @@
   "paths": {
     "/1.0/genericEntities": {
       "get": {
+        "tags": [
+          "GenericEntities"
+        ],
         "description": "<p>Returns a list of generic entities. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p class=\"italicize\">Examples:</p>\n <div class=\"code indent\"><pre>/restman/1.0/activeConnectors?name=MyGenericEntity</pre></div>\n <p>Returns generic entity with name \"MyGenericEntity\".</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList",
-        "summary": "10GenericEntities",
-        "operationId": "10GenericEntitiesGet",
+        "summary": "GenericEntities",
+        "operationId": "GenericEntitiesGet",
         "produces": [
-          "application/json"
+          "application/xml"
         ],
         "parameters": [
           {
@@ -35,20 +52,6 @@
               "name",
               "entityClassName"
             ],
-            "x-enum-elements": [
-              {
-                "name": "id",
-                "description": ""
-              },
-              {
-                "name": "name",
-                "description": ""
-              },
-              {
-                "name": "entityClassName",
-                "description": ""
-              }
-            ],
             "type": "string",
             "description": "Key to sort the list by"
           },
@@ -59,16 +62,6 @@
             "enum": [
               "asc",
               "desc"
-            ],
-            "x-enum-elements": [
-              {
-                "name": "asc",
-                "description": ""
-              },
-              {
-                "name": "desc",
-                "description": ""
-              }
             ],
             "type": "string",
             "description": "Sort order for the list; 'asc'=ascending, 'desc'=descending; defaults to\n                         ascending if not specified"
@@ -103,21 +96,16 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "OK",
             "schema": {
               "type": "string"
             },
             "examples": {}
           }
         },
-        "security": [],
-        "x-unitTests": [],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        }
+        "security": [{
+          "simple": []
+        }]
       },
       "post": {
         "description": "Creates a new generic entity.\r\nCreate",
