@@ -21,6 +21,10 @@
   {
     "name": "Roles",
     "description": "A role defines a set of permissions that a user or group is allowed to perform. A user must be assigned to at least one of these roles in order to connect to the Gateway and perform administrative tasks in the Policy Manager or through the API."
+  },
+  {
+    "name": "httpConfigurations",
+    "description": "HTTP Configuration are used to configure various options to be used by the Gateway for HTTP/HTTPS connections. For example, you can configure the login credentials for an HTTPS host, define a proxy for the host, or specify a private key to be used for authentication."
   }],
   "security": [{
     "simple": []
@@ -34,378 +38,7 @@
   "consumes": ["application/xml"],
   "produces": ["application/xml"],
   "paths": {
-    "/1.0/genericEntities": {
-      "get": {
-        "tags": ["GenericEntities"],
-        "description": "<p>Returns a list of generic entities. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p class=\"italicize\">Examples:</p>\n <div class=\"code indent\"><pre>/restman/1.0/activeConnectors?name=MyGenericEntity</pre></div>\n <p>Returns generic entity with name \"MyGenericEntity\".</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList",
-        "summary": "List All Generic Entities",
-        "operationId": "GenericEntitiesGet",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "sort",
-          "in": "query",
-          "required": false,
-          "enum": ["id", "name", "entityClassName"],
-          "type": "string",
-          "description": "Key to sort the list by"
-        }, {
-          "name": "order",
-          "in": "query",
-          "required": false,
-          "enum": ["asc", "desc"],
-          "type": "string",
-          "description": "Sort order for the list; 'asc'=ascending, 'desc'=descending; defaults to\n                         ascending if not specified"
-        }, {
-          "name": "name",
-          "in": "query",
-          "required": false,
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Name filter"
-        }, {
-          "name": "enabled",
-          "in": "query",
-          "required": false,
-          "type": "boolean",
-          "description": "Enabled filter"
-        }, {
-          "name": "entityClassName",
-          "in": "query",
-          "required": false,
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Entity class name filter"
-        }],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{
-          "simple": []
-        }]
-      },
-      "post": {
-        "tags": ["GenericEntities"],
-        "description": "Creates a new generic entity.",
-        "summary": "Create a Generic Entities",
-        "operationId": "GenericEntitiesPost",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "String",
-          "in": "body",
-          "required": true,
-          "description": "",
-          "schema": {
-            "type": "string"
-          }
-        }],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{
-          "simple": []
-        }]
-      }
-    },
-    "/1.0/genericEntities/{id}": {
-      "get": {
-        "tags": ["GenericEntities"],
-        "description": "Retrieves a generic entity given its ID",
-        "summary": "List Generic Entities By Id",
-        "operationId": "GenericEntitiesByIdGet",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": "The ID of the generic entity to retrieve"
-        }],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{
-          "simple": []
-        }]
-      },
-      "put": {
-        "tags": ["GenericEntities"],
-        "description": "Creates or Updates an existing generic entity. If a generic entity with the given ID does not exist one\n will be created, otherwise the existing one will be updated.\r\nCreate Or Update",
-        "summary": "Create or Update GenericEntities By ID",
-        "operationId": "GenericEntitiesByIdPut",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": "ID of the generic entity to create or update"
-        }, {
-          "name": "String",
-          "in": "body",
-          "required": true,
-          "description": "",
-          "schema": {
-            "type": "string"
-          }
-        }],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{
-          "simple": []
-        }]
-      },
-      "delete": {
-        "tags": ["GenericEntities"],
-        "description": "Deletes an existing generic entity.\r\nDelete",
-        "summary": "Delete Generic Entities By ID",
-        "operationId": "GenericEntitiesByIdDelete",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": "The ID of the generic entity to delete."
-        }],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [{
-          "simple": []
-        }]
-      }
-    },
-    "/1.0/genericEntities/template": {
-      "get": {
-        "tags": ["GenericEntities"],
-        "description": "Returns a template, which is an example generic entity that can be used as a reference for what generic entity\n objects should look like.\r\nTemplate",
-        "summary": "Generic Entities Template",
-        "operationId": "GenericEntitiesTemplateGet",
-        "produces": ["application/xml"],
-        "parameters": [],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{
-          "simple": []
-        }]
-      }
-    },
-    "/1.0/interfaceTags": {
-      "get": {
-        "tags": ["InterfaceTags"],
-        "description": "Returns a list of interface tags. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p class=\"italicize\">Examples:</p>\n <div class=\"code indent\"><pre>/restman/interfaceTags?name=MyInterface</pre></div>\n <p>Returns interface with name = \"MyInterface\"</p>\n <div class=\"code indent\"><pre>/restman/interfaceTags?name=MyInterface&name=MyInterfaceProd</pre></div>\n <p>Returns interfaces with name either \"MyInterface\" or \"MyInterfaceProd\"</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList",
-        "summary": "List All Interface Tags",
-        "operationId": "InterfaceTagsGet",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "sort",
-          "in": "query",
-          "required": false,
-          "enum": ["id", "name"],
-          "type": "string",
-          "description": "Key to sort the list by"
-        }, {
-          "name": "order",
-          "in": "query",
-          "required": false,
-          "enum": ["asc", "desc"],
-          "type": "string",
-          "description": "Sort order for the list; 'asc'=ascending, 'desc'=descending; defaults to\n              ascending if not specified"
-        }, {
-          "name": "name",
-          "in": "query",
-          "required": false,
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Name filter. This will return interfaces with the specified names."
-        }],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{
-          "simple": []
-        }]
-      },
-      "post": {
-        "tags": ["InterfaceTags"],
-        "description": "Creates a new interface. In order to create a new interface tag you must have read and write access to cluster\n properties.\r\nCreate",
-        "summary": "Create Interface Tags",
-        "operationId": "InterfaceTagsPost",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "String",
-          "in": "body",
-          "required": true,
-          "description": "",
-          "schema": {
-            "type": "string"
-          }
-        }],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{
-          "simple": []
-        }]
-      }
-    },
-    "/1.0/interfaceTags/{id}": {
-      "get": {
-        "tags": ["InterfaceTags"],
-        "description": "Retrieves an interface tag given it's ID. In order to get an interface tag you must have read access to cluster\n properties.\r\nGet",
-        "summary": "List Interface Tags By ID",
-        "operationId": "InterfaceTagsByIdGet",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": "The identity of the interface tag to select"
-        }],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{
-          "simple": []
-        }]
-      },
-      "put": {
-        "tags": ["InterfaceTags"],
-        "description": "Updates an existing interface tag. You cannot change the name of an interface, you can only update its address\n patterns. In order to update an interface tag you must have read and write access to cluster properties.\r\nUpdate",
-        "summary": " Update Interface Tags By ID",
-        "operationId": "InterfaceTagsByIdPut",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": "The ID of the interface tag to update"
-        }, {
-          "name": "String",
-          "in": "body",
-          "required": true,
-          "description": "",
-          "schema": {
-            "type": "string"
-          }
-        }],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{
-          "simple": []
-        }]
-      },
-      "delete": {
-        "tags": ["InterfaceTags"],
-        "description": "Deletes an existing interface tag.\r\nDelete",
-        "summary": "Delete Interface Tags By ID",
-        "operationId": "InterfaceTagsByIdDelete",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": "The ID of the interface tag to delete."
-        }],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [{
-          "simple": []
-        }]
-      }
-    },
-    "/1.0/interfaceTags/template": {
-      "get": {
-        "tags": ["InterfaceTags"],
-        "description": "Returns a template, which is an example interface tag that can be used as a reference for what interface tag\n objects should look like.\r\nTemplate",
-        "summary": "Interface Tags Template",
-        "operationId": "InterfaceTagsTemplateGet",
-        "produces": ["application/xml"],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{
-          "simple": []
-        }]
-      }
-    },
+
     "/1.0/folders": {
       "get": {
         "tags": ["Folders"],
@@ -631,6 +264,578 @@
         "security": [{"simple": []}]
       }
     },
+
+    "/1.0/genericEntities": {
+      "get": {
+        "tags": ["GenericEntities"],
+        "description": "<p>Returns a list of generic entities. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p class=\"italicize\">Examples:</p>\n <div class=\"code indent\"><pre>/restman/1.0/activeConnectors?name=MyGenericEntity</pre></div>\n <p>Returns generic entity with name \"MyGenericEntity\".</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList",
+        "summary": "List All Generic Entities",
+        "operationId": "GenericEntitiesGet",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "sort",
+          "in": "query",
+          "required": false,
+          "enum": ["id", "name", "entityClassName"],
+          "type": "string",
+          "description": "Key to sort the list by"
+        }, {
+          "name": "order",
+          "in": "query",
+          "required": false,
+          "enum": ["asc", "desc"],
+          "type": "string",
+          "description": "Sort order for the list; 'asc'=ascending, 'desc'=descending; defaults to\n                         ascending if not specified"
+        }, {
+          "name": "name",
+          "in": "query",
+          "required": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Name filter"
+        }, {
+          "name": "enabled",
+          "in": "query",
+          "required": false,
+          "type": "boolean",
+          "description": "Enabled filter"
+        }, {
+          "name": "entityClassName",
+          "in": "query",
+          "required": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity class name filter"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{
+          "simple": []
+        }]
+      },
+      "post": {
+        "tags": ["GenericEntities"],
+        "description": "Creates a new generic entity.",
+        "summary": "Create a Generic Entities",
+        "operationId": "GenericEntitiesPost",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "String",
+          "in": "body",
+          "required": true,
+          "description": "",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{
+          "simple": []
+        }]
+      }
+    },
+    "/1.0/genericEntities/{id}": {
+      "get": {
+        "tags": ["GenericEntities"],
+        "description": "Retrieves a generic entity given its ID",
+        "summary": "List Generic Entities By Id",
+        "operationId": "GenericEntitiesByIdGet",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "The ID of the generic entity to retrieve"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{
+          "simple": []
+        }]
+      },
+      "put": {
+        "tags": ["GenericEntities"],
+        "description": "Creates or Updates an existing generic entity. If a generic entity with the given ID does not exist one\n will be created, otherwise the existing one will be updated.\r\nCreate Or Update",
+        "summary": "Create or Update GenericEntities By ID",
+        "operationId": "GenericEntitiesByIdPut",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "ID of the generic entity to create or update"
+        }, {
+          "name": "String",
+          "in": "body",
+          "required": true,
+          "description": "",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{
+          "simple": []
+        }]
+      },
+      "delete": {
+        "tags": ["GenericEntities"],
+        "description": "Deletes an existing generic entity.\r\nDelete",
+        "summary": "Delete Generic Entities By ID",
+        "operationId": "GenericEntitiesByIdDelete",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "The ID of the generic entity to delete."
+        }],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [{
+          "simple": []
+        }]
+      }
+    },
+    "/1.0/genericEntities/template": {
+      "get": {
+        "tags": ["GenericEntities"],
+        "description": "Returns a template, which is an example generic entity that can be used as a reference for what generic entity\n objects should look like.\r\nTemplate",
+        "summary": "Generic Entities Template",
+        "operationId": "GenericEntitiesTemplateGet",
+        "produces": ["application/xml"],
+        "parameters": [],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{
+          "simple": []
+        }]
+      }
+    },
+
+    "/1.0/httpConfigurations": {
+      "get": {
+        "tags": ["httpConfigurations"],
+        "description": "<p>Returns a list of HTTP configurations. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p class=\"italicize\">Examples:</p>\n <div class=\"code indent\"><pre>/restman/1.0/httpConfigurations?name=MyHTTPConfiguration</pre></div>\n <p>Returns HTTP configuration with name \"MyHTTPConfiguration\".</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList",
+        "summary": "List Http Configurations",
+        "operationId": "HttpConfigurationsGet",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "sort",
+          "in": "query",
+          "required": false,
+          "enum": ["id", "host"],
+          "type": "string",
+          "description": "Key to sort the list by"
+        }, {
+          "name": "order",
+          "in": "query",
+          "required": false,
+          "enum": ["asc", "desc"],
+          "type": "string",
+          "description": "Sort order for the list; 'asc'=ascending, 'desc'=descending; defaults to\n                        ascending if not specified"
+        }, {
+          "name": "host",
+          "in": "query",
+          "required": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Name filter"
+        }, {
+          "name": "protocol",
+          "in": "query",
+          "required": false,
+          "enum": ["HTTP", "HTTPS"],
+          "type": "string",
+          "description": "Protocol filter"
+        }, {
+          "name": "ntlmHost",
+          "in": "query",
+          "required": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "NtlmHost filter"
+        }, {
+          "name": "ntlmDomain",
+          "in": "query",
+          "required": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "NtlmDomain id filter"
+        }, {
+          "name": "securityZone.id",
+          "in": "query",
+          "required": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Security zone ID filter"
+        }],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{"simple": []}]
+      },
+      "post": {
+        "tags": ["httpConfigurations"],
+        "description": "Creates a new HTTP configuration.\r\nCreate",
+        "summary": "Create Http Configurations",
+        "operationId": "HttpConfigurationsPost",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "String",
+          "in": "body",
+          "required": true,
+          "description": "",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "object"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{"simple": []}]
+      }
+    },
+    "/1.0/httpConfigurations/template": {
+      "get": {
+        "tags": ["httpConfigurations"],
+        "description": "Returns a template, which is an example HTTP configuration that can be used as a reference for what HTTP\n configuration objects should look like.\r\nTemplate",
+        "summary": "Http Configurations Template",
+        "operationId": "HttpConfigurationsTemplateGet",
+        "produces": ["application/xml"],
+        "parameters": [],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{"simple": []}]
+      }
+    },
+    "/1.0/httpConfigurations/{id}": {
+      "get": {
+        "tags": ["httpConfigurations"],
+        "description": "Returns an HTTP configuration with the given ID.\r\nGet",
+        "summary": "List Http Configurations By ID",
+        "operationId": "HttpConfigurationsByIdGet",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "The ID of the HTTP configuration to return"
+        }],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{"simple": []}]
+      },
+      "put": {
+        "tags": ["httpConfigurations"],
+        "description": "Creates or Updates an existing HTTP configuration. If an HTTP configuration with the given ID does not exist one\n will be created, otherwise the existing one will be updated.\r\nUpdate",
+        "summary": "Create or Update Http Configurations By ID",
+        "operationId": "HttpConfigurationsByIdPut",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "ID of the HTTP configuration to create or update"
+        }, {
+          "name": "String",
+          "in": "body",
+          "required": true,
+          "description": "",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {            "description": "OK",
+            "schema": {
+              "type": "object"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{"simple": []}]
+      },
+      "delete": {
+        "tags": ["httpConfigurations"],
+        "description": "Deletes an existing HTTP configuration.\r\nDelete",
+        "summary": "Delete Http Configurations By ID",
+        "operationId": "HttpConfigurationsByIdDelete",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "The ID of the HTTP configuration to delete."
+        }],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [{"simple": []}]
+      }
+    },
+
+    "/1.0/interfaceTags": {
+      "get": {
+        "tags": ["InterfaceTags"],
+        "description": "Returns a list of interface tags. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p class=\"italicize\">Examples:</p>\n <div class=\"code indent\"><pre>/restman/interfaceTags?name=MyInterface</pre></div>\n <p>Returns interface with name = \"MyInterface\"</p>\n <div class=\"code indent\"><pre>/restman/interfaceTags?name=MyInterface&name=MyInterfaceProd</pre></div>\n <p>Returns interfaces with name either \"MyInterface\" or \"MyInterfaceProd\"</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList",
+        "summary": "List All Interface Tags",
+        "operationId": "InterfaceTagsGet",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "sort",
+          "in": "query",
+          "required": false,
+          "enum": ["id", "name"],
+          "type": "string",
+          "description": "Key to sort the list by"
+        }, {
+          "name": "order",
+          "in": "query",
+          "required": false,
+          "enum": ["asc", "desc"],
+          "type": "string",
+          "description": "Sort order for the list; 'asc'=ascending, 'desc'=descending; defaults to\n              ascending if not specified"
+        }, {
+          "name": "name",
+          "in": "query",
+          "required": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Name filter. This will return interfaces with the specified names."
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{
+          "simple": []
+        }]
+      },
+      "post": {
+        "tags": ["InterfaceTags"],
+        "description": "Creates a new interface. In order to create a new interface tag you must have read and write access to cluster\n properties.\r\nCreate",
+        "summary": "Create Interface Tags",
+        "operationId": "InterfaceTagsPost",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "String",
+          "in": "body",
+          "required": true,
+          "description": "",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{
+          "simple": []
+        }]
+      }
+    },
+    "/1.0/interfaceTags/{id}": {
+      "get": {
+        "tags": ["InterfaceTags"],
+        "description": "Retrieves an interface tag given it's ID. In order to get an interface tag you must have read access to cluster\n properties.\r\nGet",
+        "summary": "List Interface Tags By ID",
+        "operationId": "InterfaceTagsByIdGet",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "The identity of the interface tag to select"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{
+          "simple": []
+        }]
+      },
+      "put": {
+        "tags": ["InterfaceTags"],
+        "description": "Updates an existing interface tag. You cannot change the name of an interface, you can only update its address\n patterns. In order to update an interface tag you must have read and write access to cluster properties.\r\nUpdate",
+        "summary": " Update Interface Tags By ID",
+        "operationId": "InterfaceTagsByIdPut",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "The ID of the interface tag to update"
+        }, {
+          "name": "String",
+          "in": "body",
+          "required": true,
+          "description": "",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{
+          "simple": []
+        }]
+      },
+      "delete": {
+        "tags": ["InterfaceTags"],
+        "description": "Deletes an existing interface tag.\r\nDelete",
+        "summary": "Delete Interface Tags By ID",
+        "operationId": "InterfaceTagsByIdDelete",
+        "produces": ["application/xml"],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "The ID of the interface tag to delete."
+        }],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [{
+          "simple": []
+        }]
+      }
+    },
+    "/1.0/interfaceTags/template": {
+      "get": {
+        "tags": ["InterfaceTags"],
+        "description": "Returns a template, which is an example interface tag that can be used as a reference for what interface tag\n objects should look like.\r\nTemplate",
+        "summary": "Interface Tags Template",
+        "operationId": "InterfaceTagsTemplateGet",
+        "produces": ["application/xml"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {}
+          }
+        },
+        "security": [{
+          "simple": []
+        }]
+      }
+    },
+
     "/1.0/roles": {
       "get": {
         "tags": ["Roles"],
@@ -879,196 +1084,7 @@
         "security": [{"simple": []}]
       }
     },
-    "/1.0/httpConfigurations": {
-      "get": {
-        "description": "<p>Returns a list of HTTP configurations. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p class=\"italicize\">Examples:</p>\n <div class=\"code indent\"><pre>/restman/1.0/httpConfigurations?name=MyHTTPConfiguration</pre></div>\n <p>Returns HTTP configuration with name \"MyHTTPConfiguration\".</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList",
-        "summary": "10HttpConfigurations",
-        "operationId": "10HttpConfigurationsGet",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "sort",
-          "in": "query",
-          "required": false,
-          "enum": ["id", "host"],
-          "type": "string",
-          "description": "Key to sort the list by"
-        }, {
-          "name": "order",
-          "in": "query",
-          "required": false,
-          "enum": ["asc", "desc"],
-          "type": "string",
-          "description": "Sort order for the list; 'asc'=ascending, 'desc'=descending; defaults to\n                        ascending if not specified"
-        }, {
-          "name": "host",
-          "in": "query",
-          "required": false,
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Name filter"
-        }, {
-          "name": "protocol",
-          "in": "query",
-          "required": false,
-          "enum": ["HTTP", "HTTPS"],
-          "type": "string",
-          "description": "Protocol filter"
-        }, {
-          "name": "ntlmHost",
-          "in": "query",
-          "required": false,
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "NtlmHost filter"
-        }, {
-          "name": "ntlmDomain",
-          "in": "query",
-          "required": false,
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "NtlmDomain id filter"
-        }, {
-          "name": "securityZone.id",
-          "in": "query",
-          "required": false,
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Security zone ID filter"
-        }],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{"simple": []}]
-      },
-      "post": {
-        "description": "Creates a new HTTP configuration.\r\nCreate",
-        "summary": "10HttpConfigurations",
-        "operationId": "10HttpConfigurationsPost",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "String",
-          "in": "body",
-          "required": true,
-          "description": "",
-          "schema": {
-            "type": "string"
-          }
-        }],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "object"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{"simple": []}]
-      }
-    },
-    "/1.0/httpConfigurations/template": {
-      "get": {
-        "description": "Returns a template, which is an example HTTP configuration that can be used as a reference for what HTTP\n configuration objects should look like.\r\nTemplate",
-        "summary": "10HttpConfigurationsTemplate",
-        "operationId": "10HttpConfigurationsTemplateGet",
-        "produces": ["application/xml"],
-        "parameters": [],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{"simple": []}]
-      }
-    },
-    "/1.0/httpConfigurations/{id}": {
-      "get": {
-        "description": "Returns an HTTP configuration with the given ID.\r\nGet",
-        "summary": "10HttpConfigurationsById",
-        "operationId": "10HttpConfigurationsByIdGet",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": "The ID of the HTTP configuration to return"
-        }],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{"simple": []}]
-      },
-      "put": {
-        "description": "Creates or Updates an existing HTTP configuration. If an HTTP configuration with the given ID does not exist one\n will be created, otherwise the existing one will be updated.\r\nUpdate",
-        "summary": "10HttpConfigurationsById",
-        "operationId": "10HttpConfigurationsByIdPut",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": "ID of the HTTP configuration to create or update"
-        }, {
-          "name": "String",
-          "in": "body",
-          "required": true,
-          "description": "",
-          "schema": {
-            "type": "string"
-          }
-        }],
-        "responses": {
-          "200": {            "description": "OK",
-            "schema": {
-              "type": "object"
-            },
-            "examples": {}
-          }
-        },
-        "security": [{"simple": []}]
-      },
-      "delete": {
-        "description": "Deletes an existing HTTP configuration.\r\nDelete",
-        "summary": "10HttpConfigurationsById",
-        "operationId": "10HttpConfigurationsByIdDelete",
-        "produces": ["application/xml"],
-        "parameters": [{
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "type": "string",
-          "description": "The ID of the HTTP configuration to delete."
-        }],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [{"simple": []}]
-      }
-    },
+
     "/1.0/identityProviders": {
       "get": {
         "description": "<p>Returns a list of identity providers. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p class=\"italicize\">Examples:</p>\n <div class=\"code indent\"><pre>/restman/1.0/identityProviders?name=MyIDProvider</pre></div>\n <p>Returns identity provider with name \"MyIDProvider\".</p>\n <div class=\"code indent\"><pre>/restman/1.0/identityProviders?type=LDAP</pre></div>\n <p>Returns identity providers of LDAP type</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList",
