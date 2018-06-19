@@ -59,119 +59,119 @@
     {
     "name": "Generic Entities",
     "description": "A generic entities is used by some modular assertions to represent any entity."
-  },
-  {
-    "name": "Group",
-    "description": "A group represents a group identity in an identity provider. When no identity provider is specified in the url then the internal identity provider is assumed. Groups can only be retrieved, they can not be created."
-  },
-  {
-    "name": "Http Configurations",
-    "description": "HTTP Configuration are used to configure various options to be used by the Gateway for HTTP/HTTPS connections. For example, you can configure the login credentials for an HTTPS host, define a proxy for the host, or specify a private key to be used for authentication."
-  },
-  {
-    "name": "Identity Providers",
-    "description": "An Identity provider is used to store and provide identities."
-  },
-  {
-    "name": "Interface Tags",
-    "description": "Interfaces are used to specify IP addresses that can be monitored by a listen port. Defining an interface gives you greater control over the IP addresses that will be monitored."
-  },
-  {
-    "name": "JDBC Connection",
-    "description": "JDBC connections allow the Gateway to query external databases and then use the query results during policy consumption."
-  },
-  {
-    "name": "JMS Destinations",
-    "description": "A JMS destination is used to configure a connection to a JMS service. This is used for both inbound and outbound configurations."
-  },
-  {
-    "name": "Listen Port",
-    "description": "A listen port is a TCP port that \"listens\" for incoming messages that are then passed to the Gateway message processor."
-  },
-  {
-    "name": "Log Sink Configuration",
-    "description": "Since: 1.0.4: Log Sink Configurations defines where the Gateway pushes logs to."
-  },
-  {
-    "name": "Policy",
-    "description": "This resource is used to manage policies. These can be internal, global or other special purpose policies."
-  },
-  {
-    "name": "Policy Alias",
-    "description": "A policy alias allows a policy to appear in more than one folder in the Services and Policies list. The policy alias is a linked copy of the original policy."
-  },
-  {
-    "name": "Policy Backed Service",
-    "description": "Since: 1.0.2: Policy Backed Services allow for custom policies to be referred to from gateway processes."
-  },
-  {
-    "name": "Policy Bundle Installer",
-    "description": "Since: 1.0.1: This resource exposes the Policy Bundle Installer for no-GUI use cases (e.g. support auto provisioning scripting to install OAuth)."
-  },
-  {
-    "name": "Private Key",
-    "description": "This resource is used to manage private keys."
-  },
-  {
-    "name": "Published Services",
-    "description": "This resource is used to manage services."
-  },
-  {
-    "name": "Resource Document",
-    "description": "Resource documents are documents schema documents. They are either a dtd or an xml schema."
-  },
-  {
-    "name": "Revocation Checking Policy",
-    "description": "A revocation checking policy defines the strategies used by the Gateway to determine whether a certificate has been revoked."
-  },
-  {
-    "name": "Roles",
-    "description": "A role defines a set of permissions that a user or group is allowed to perform. A user must be assigned to at least one of these roles in order to connect to the Gateway and perform administrative tasks in the Policy Manager or through the API."
-  },
-  {
-    "name": "Sample Message",
-    "description": "Since: 1.0.1: A sample message is a message to help configure assertions."
-  },
-  {
-    "name": "Scheduled Task",
-    "description": "Since: 1.0.2: Scheduled tasks allow the Gateway to schedule policy consumption."
-  },
-  {
-    "name": "Secure Passwords",
-    "description": "Secure passwords are used to securely store passwords and plain text PEM private keys in the Gateway database."
-  },
-  {
-    "name": "Security Zones",
-    "description": "Security zones are used to partition the Gateway into portions that can then be managed by other users. A security zone is a collection of related entities (for example: services, policies, folders, trusted certificates)."
-  },
-  {
-    "name": "Server Module File",
-    "description": "Since: 1.0.2: A ServerModuleFile represents a Modular or a Custom Assertion(s) Module."
-  },
-  {
-    "name": "Service Alias",
-    "description": "A service alias allows a service to appear in more than one folder in the Services and Policies list. The service alias is a linked copy of the original service."
-  },
-  {
-    "name": "SiteMinder Configuration",
-    "description": "A SiteMinder Configuration describes a connection to site minder."
-  },
-  {
-    "name": "Solution Kits",
-    "description": "Since: 1.0.2; This resource is used to list Solution Kits installed on the Gateway."
-  },
-  {
-    "name": "Solution Kit Manager",
-    "description": "Since: 1.0.2 :This resource exposes the Solution Kit Manager for no-GUI use cases (e.g. support auto provisioning scripting to upload and manage a .skar file).  To interact with this resource use a tool like Advanced Rest Client (for Chrome) or cURL. Note the Solution Kit ID is the GUID provided in SolutionKit.xml."
-  },
-  {
-    "name": "User",
-    "description": "A user represents a user identity in an identity provider. When no identity provider is specified in the url then the internal identity provider is assumed. Users can only be created and updated in the internal identity provider."
-  },
-  {
-    "name": "Work Queue",
-    "description": "Since: 1.0.2: Work Queue is a per-node-in-memory queue that holds policy fragments for asynchronous execution."
-  }
+    },
+    {
+      "name": "Group",
+      "description": "A group represents a group identity in an identity provider. When no identity provider is specified in the url then the internal identity provider is assumed. Groups can only be retrieved, they can not be created."
+    },
+    {
+      "name": "Http Configurations",
+      "description": "HTTP Configuration are used to configure various options to be used by the Gateway for HTTP/HTTPS connections. For example, you can configure the login credentials for an HTTPS host, define a proxy for the host, or specify a private key to be used for authentication."
+    },
+    {
+      "name": "Identity Providers",
+      "description": "An Identity provider is used to store and provide identities."
+    },
+    {
+      "name": "Interface Tags",
+      "description": "Interfaces are used to specify IP addresses that can be monitored by a listen port. Defining an interface gives you greater control over the IP addresses that will be monitored."
+    },
+    {
+      "name": "JDBC Connection",
+      "description": "JDBC connections allow the Gateway to query external databases and then use the query results during policy consumption."
+    },
+    {
+      "name": "JMS Destinations",
+      "description": "A JMS destination is used to configure a connection to a JMS service. This is used for both inbound and outbound configurations."
+    },
+    {
+      "name": "Listen Port",
+      "description": "A listen port is a TCP port that \"listens\" for incoming messages that are then passed to the Gateway message processor."
+    },
+    {
+      "name": "Log Sink Configuration",
+      "description": "Since: 1.0.4: Log Sink Configurations defines where the Gateway pushes logs to."
+    },
+    {
+      "name": "Policy",
+      "description": "This resource is used to manage policies. These can be internal, global or other special purpose policies."
+    },
+    {
+      "name": "Policy Alias",
+      "description": "A policy alias allows a policy to appear in more than one folder in the Services and Policies list. The policy alias is a linked copy of the original policy."
+    },
+    {
+      "name": "Policy Backed Service",
+      "description": "Since: 1.0.2: Policy Backed Services allow for custom policies to be referred to from gateway processes."
+    },
+    {
+      "name": "Policy Bundle Installer",
+      "description": "Since: 1.0.1: This resource exposes the Policy Bundle Installer for no-GUI use cases (e.g. support auto provisioning scripting to install OAuth)."
+    },
+    {
+      "name": "Private Key",
+      "description": "This resource is used to manage private keys."
+    },
+    {
+      "name": "Published Services",
+      "description": "This resource is used to manage services."
+    },
+    {
+      "name": "Resource Document",
+      "description": "Resource documents are documents schema documents. They are either a dtd or an xml schema."
+    },
+    {
+      "name": "Revocation Checking Policy",
+      "description": "A revocation checking policy defines the strategies used by the Gateway to determine whether a certificate has been revoked."
+    },
+    {
+      "name": "Roles",
+      "description": "A role defines a set of permissions that a user or group is allowed to perform. A user must be assigned to at least one of these roles in order to connect to the Gateway and perform administrative tasks in the Policy Manager or through the API."
+    },
+    {
+      "name": "Sample Message",
+      "description": "Since: 1.0.1: A sample message is a message to help configure assertions."
+    },
+    {
+      "name": "Scheduled Task",
+      "description": "Since: 1.0.2: Scheduled tasks allow the Gateway to schedule policy consumption."
+    },
+    {
+      "name": "Secure Passwords",
+      "description": "Secure passwords are used to securely store passwords and plain text PEM private keys in the Gateway database."
+    },
+    {
+      "name": "Security Zones",
+      "description": "Security zones are used to partition the Gateway into portions that can then be managed by other users. A security zone is a collection of related entities (for example: services, policies, folders, trusted certificates)."
+    },
+    {
+      "name": "Server Module File",
+      "description": "Since: 1.0.2: A ServerModuleFile represents a Modular or a Custom Assertion(s) Module."
+    },
+    {
+      "name": "Service Alias",
+      "description": "A service alias allows a service to appear in more than one folder in the Services and Policies list. The service alias is a linked copy of the original service."
+    },
+    {
+      "name": "SiteMinder Configuration",
+      "description": "A SiteMinder Configuration describes a connection to site minder."
+    },
+    {
+      "name": "Solution Kits",
+      "description": "Since: 1.0.2; This resource is used to list Solution Kits installed on the Gateway."
+    },
+    {
+      "name": "Solution Kit Manager",
+      "description": "Since: 1.0.2 :This resource exposes the Solution Kit Manager for no-GUI use cases (e.g. support auto provisioning scripting to upload and manage a .skar file).  To interact with this resource use a tool like Advanced Rest Client (for Chrome) or cURL. Note the Solution Kit ID is the GUID provided in SolutionKit.xml."
+    },
+    {
+      "name": "User",
+      "description": "A user represents a user identity in an identity provider. When no identity provider is specified in the url then the internal identity provider is assumed. Users can only be created and updated in the internal identity provider."
+    },
+    {
+      "name": "Work Queue",
+      "description": "Since: 1.0.2: Work Queue is a per-node-in-memory queue that holds policy fragments for asynchronous execution."
+    }
 
   ],
   "security": [{
