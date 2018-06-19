@@ -37,7 +37,7 @@
           "GenericEntities"
         ],
         "description": "<p>Returns a list of generic entities. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p class=\"italicize\">Examples:</p>\n <div class=\"code indent\"><pre>/restman/1.0/activeConnectors?name=MyGenericEntity</pre></div>\n <p>Returns generic entity with name \"MyGenericEntity\".</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList",
-        "summary": "GenericEntities",
+        "summary": "List All Generic Entities",
         "operationId": "GenericEntitiesGet",
         "produces": [
           "application/xml"
@@ -100,7 +100,9 @@
             "schema": {
               "type": "string"
             },
-            "examples": {}
+            "examples": {
+              "application/xml": 'TODO'
+            }
           }
         },
         "security": [{
@@ -108,11 +110,14 @@
         }]
       },
       "post": {
-        "description": "Creates a new generic entity.\r\nCreate",
-        "summary": "10GenericEntities",
-        "operationId": "10GenericEntitiesPost",
+        "tags": [
+          "GenericEntities"
+        ],
+        "description": "Creates a new generic entity.",
+        "summary": "Create a Generic Entities",
+        "operationId": "GenericEntitiesPost",
         "produces": [
-          "application/json"
+          "application/xml"
         ],
         "parameters": [
           {
@@ -127,30 +132,30 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "OK",
             "schema": {
               "type": "object"
             },
-            "examples": {}
+            "examples": {
+              "application/xml": 'TODO'
+            }
           }
         },
-        "security": [],
-        "x-unitTests": [],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        }
+        "security": [{
+          "simple": []
+        }]
       }
     },
     "/1.0/genericEntities/{id}": {
       "get": {
-        "description": "Retrieves a generic entity given its ID\r\nGet",
-        "summary": "10GenericEntitiesById",
-        "operationId": "10GenericEntitiesByIdGet",
+        "tags": [
+          "GenericEntities"
+        ],
+        "description": "Retrieves a generic entity given its ID",
+        "summary": "Generic Entities By Id",
+        "operationId": "GenericEntitiesByIdGet",
         "produces": [
-          "application/json"
+          "application/xml"
         ],
         "parameters": [
           {
@@ -163,28 +168,28 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "OK",
             "schema": {
               "type": "string"
             },
-            "examples": {}
+            "examples": {
+              "application/xml": 'TODO'
+            }
           }
         },
-        "security": [],
-        "x-unitTests": [],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        }
+        "security": [{
+          "simple": []
+        }]
       },
       "put": {
+        "tags": [
+          "GenericEntities"
+        ],
         "description": "Creates or Updates an existing generic entity. If a generic entity with the given ID does not exist one\n will be created, otherwise the existing one will be updated.\r\nCreate Or Update",
-        "summary": "10GenericEntitiesById",
-        "operationId": "10GenericEntitiesByIdPut",
+        "summary": "Create or Update GenericEntities By ID",
+        "operationId": "GenericEntitiesByIdPut",
         "produces": [
-          "application/json"
+          "application/xml"
         ],
         "parameters": [
           {
@@ -206,28 +211,28 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "OK",
             "schema": {
               "type": "object"
             },
-            "examples": {}
+            "examples": {
+              "application/xml": 'TODO'
+            }
           }
         },
-        "security": [],
-        "x-unitTests": [],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        }
+        "security": [{
+          "simple": []
+        }]
       },
       "delete": {
+        "tags": [
+          "GenericEntities"
+        ],
         "description": "Deletes an existing generic entity.\r\nDelete",
-        "summary": "10GenericEntitiesById",
+        "summary": "Delete Generic Entities By ID",
         "operationId": "10GenericEntitiesByIdDelete",
         "produces": [
-          "application/json"
+          "application/xml"
         ],
         "parameters": [
           {
@@ -240,23 +245,21 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "OK"
           }
         },
-        "security": [],
-        "x-unitTests": [],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        }
+        "security": [{
+          "simple": []
+        }]
       }
     },
     "/1.0/genericEntities/template": {
       "get": {
+        "tags": [
+          "GenericEntities"
+        ],
         "description": "Returns a template, which is an example generic entity that can be used as a reference for what generic entity\n objects should look like.\r\nTemplate",
-        "summary": "10GenericEntitiesTemplate",
+        "summary": "Generic Entities Template",
         "operationId": "10GenericEntitiesTemplateGet",
         "produces": [
           "application/json"
@@ -268,17 +271,14 @@
             "schema": {
               "type": "string"
             },
-            "examples": {}
+            "examples": {
+              "application/xml": 'TODO'
+            }
           }
         },
-        "security": [],
-        "x-unitTests": [],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        }
+        "security": [{
+          "simple": []
+        }]
       }
     },
     "/1.0/interfaceTags": {
