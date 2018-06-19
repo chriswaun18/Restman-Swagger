@@ -13,6 +13,10 @@
   }, {
     "name": "InterfaceTags",
     "description": "Interfaces are used to specify IP addresses that can be monitored by a listen port. Defining an interface gives you greater control over the IP addresses that will be monitored."
+  },
+  {
+    "name": "Folders",
+    "description": "Folders are used to organize the policies, services, and aliases you have on the Gateway."
   }],
   "security": [{
     "simple": []
@@ -118,7 +122,7 @@
       "get": {
         "tags": ["GenericEntities"],
         "description": "Retrieves a generic entity given its ID",
-        "summary": "Generic Entities By Id",
+        "summary": "List Generic Entities By Id",
         "operationId": "GenericEntitiesByIdGet",
         "produces": ["application/xml"],
         "parameters": [{
@@ -179,7 +183,7 @@
         "tags": ["GenericEntities"],
         "description": "Deletes an existing generic entity.\r\nDelete",
         "summary": "Delete Generic Entities By ID",
-        "operationId": "10GenericEntitiesByIdDelete",
+        "operationId": "GenericEntitiesByIdDelete",
         "produces": ["application/xml"],
         "parameters": [{
           "name": "id",
@@ -203,12 +207,11 @@
         "tags": ["GenericEntities"],
         "description": "Returns a template, which is an example generic entity that can be used as a reference for what generic entity\n objects should look like.\r\nTemplate",
         "summary": "Generic Entities Template",
-        "operationId": "10GenericEntitiesTemplateGet",
+        "operationId": "GenericEntitiesTemplateGet",
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -298,7 +301,7 @@
         "tags": ["InterfaceTags"],
         "description": "Retrieves an interface tag given it's ID. In order to get an interface tag you must have read access to cluster\n properties.\r\nGet",
         "summary": "List Interface Tags By ID",
-        "operationId": "10InterfaceTagsByIdGet",
+        "operationId": "InterfaceTagsByIdGet",
         "produces": ["application/xml"],
         "parameters": [{
           "name": "id",
@@ -401,6 +404,7 @@
     },
     "/1.0/folders": {
       "get": {
+        "tags": ["Folders"],
         "description": "<p>Returns a list of folders. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p class=\"italicize\">Examples:</p>\n <div class=\"code indent\"><pre>/restman/1.0/folders?name=MyFolder</pre></div>\n <p>Returns folder with name \"MyFolder\".</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList",
         "summary": "10Folders",
         "operationId": "10FoldersGet",
@@ -447,8 +451,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -458,6 +461,7 @@
         "security": [{"simple": []}]
       },
       "post": {
+        "tags": ["Folders"],
         "description": "Creates a new folder\r\nCreate",
         "summary": "10Folders",
         "operationId": "10FoldersPost",
@@ -472,8 +476,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -485,14 +488,14 @@
     },
     "/1.0/folders/template": {
       "get": {
+        "tags": ["Folders"],
         "description": "Returns a template, which is an example folder that can be used as a reference for what folder objects should\n look like.\r\nTemplate",
         "summary": "10FoldersTemplate",
         "operationId": "10FoldersTemplateGet",
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -504,6 +507,7 @@
     },
     "/1.0/folders/{id}": {
       "get": {
+        "tags": ["Folders"],
         "description": "Returns a folder with the given ID.\r\nGet",
         "summary": "10FoldersById",
         "operationId": "10FoldersByIdGet",
@@ -516,8 +520,7 @@
           "description": "The ID of the folder to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -527,6 +530,7 @@
         "security": [{"simple": []}]
       },
       "put": {
+        "tags": ["Folders"],
         "description": "Creates or Updates an existing folder. If a folder with the given ID does not exist one\n will be created, otherwise the existing one will be updated.\r\nCreate Or Update",
         "summary": "10FoldersById",
         "operationId": "10FoldersByIdPut",
@@ -547,8 +551,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -558,6 +561,7 @@
         "security": [{"simple": []}]
       },
       "delete": {
+        "tags": ["Folders"],
         "description": "Deletes an existing folder.\r\nDelete",
         "summary": "10FoldersById",
         "operationId": "10FoldersByIdDelete",
@@ -586,6 +590,7 @@
     },
     "/1.0/folders/{id}/dependencies": {
       "get": {
+        "tags": ["Folders"],
         "description": "Returns the list of dependencies for this entity.\r\nGet Dependencies\r\nGet Dependencies",
         "summary": "10FoldersDependenciesById",
         "operationId": "10FoldersDependenciesByIdGet",
@@ -606,8 +611,7 @@
           "description": "How deep to search for the dependencies. 0 for none, 1 for immediate dependencies, -1 for full depth search\r\n1.0.1"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -656,8 +660,7 @@
           "description": "User created filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -681,8 +684,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -757,8 +759,7 @@
           "description": ""
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -782,8 +783,7 @@
           "description": "The ID of the role to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -813,8 +813,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -851,8 +850,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -927,8 +925,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -952,8 +949,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -971,8 +967,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -996,8 +991,7 @@
           "description": "The ID of the HTTP configuration to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -1027,8 +1021,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -1106,8 +1099,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -1131,8 +1123,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -1150,8 +1141,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -1175,8 +1165,7 @@
           "description": "The ID of the identity provider to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -1206,8 +1195,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -1275,8 +1263,7 @@
           "description": "Name filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -1300,8 +1287,7 @@
           "description": ""
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -1331,8 +1317,7 @@
           "description": ""
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -1380,8 +1365,7 @@
           "description": "Login filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -1411,8 +1395,7 @@
           "description": ""
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -1457,8 +1440,7 @@
           "description": "The format of the password. \"plain\" or \"sha512crypt\""
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -1482,8 +1464,7 @@
           "description": ""
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -1513,8 +1494,7 @@
           "description": ""
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -1550,8 +1530,7 @@
           "description": ""
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -1606,8 +1585,7 @@
           "description": ""
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -1643,8 +1621,7 @@
           "description": ""
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -1727,8 +1704,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -1752,8 +1728,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -1777,8 +1752,7 @@
           "description": "The ID of the SiteMinder configuration to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -1808,8 +1782,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -1846,8 +1819,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -1899,8 +1871,7 @@
           "description": "Type filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -1924,8 +1895,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -1943,8 +1913,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -1968,8 +1937,7 @@
           "description": "The ID of the secure password to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -1999,8 +1967,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -2062,8 +2029,7 @@
           "description": "Name filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -2087,8 +2053,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -2112,8 +2077,7 @@
           "description": "The ID of the cluster property to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -2143,8 +2107,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -2181,8 +2144,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -2225,8 +2187,7 @@
           "description": "Name filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -2250,8 +2211,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -2275,8 +2235,7 @@
           "description": "The ID of the security zone to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -2306,8 +2265,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -2344,8 +2302,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -2425,8 +2382,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -2456,8 +2412,7 @@
           "description": "The comment to add to the policy version when creating the service"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -2514,8 +2469,7 @@
           "description": "Comment filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -2554,8 +2508,7 @@
           "description": ""
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -2579,8 +2532,7 @@
           "description": ""
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -2612,8 +2564,7 @@
           "description": ""
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -2672,8 +2623,7 @@
           "description": ""
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -2705,8 +2655,7 @@
           "description": "How deep to search for the dependencies. 0 for none, 1 for immediate dependencies, -1 for full depth search\r\n1.0.1"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -2730,8 +2679,7 @@
           "description": "The ID of the service to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -2774,8 +2722,7 @@
           "description": "The comment to add to the policy version when updating the service"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -2812,8 +2759,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -2879,8 +2825,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -2904,8 +2849,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -2929,8 +2873,7 @@
           "description": "The ID of the email listener to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -2960,8 +2903,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -2998,8 +2940,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -3050,8 +2991,7 @@
           "description": "Guid filter."
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -3069,8 +3009,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -3094,8 +3033,7 @@
           "description": "The id of the SolutionKit to retrieve."
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -3147,8 +3085,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -3172,8 +3109,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -3191,8 +3127,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -3216,8 +3151,7 @@
           "description": "The ID of the certificate to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -3247,8 +3181,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -3328,8 +3261,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -3353,8 +3285,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -3372,8 +3303,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -3397,8 +3327,7 @@
           "description": "The ID of the encapsulated assertion to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -3428,8 +3357,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -3480,8 +3408,7 @@
           "description": "How deep to search for the dependencies. 0 for none, 1 for immediate dependencies, -1 for full depth search\r\n1.0.1"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -3499,8 +3426,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -3526,8 +3452,7 @@
           "description": "How deep to search for the dependencies. 0 for none, 1 for immediate dependencies, -1 for full depth search\r\n1.0.1"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -3545,8 +3470,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -3570,8 +3494,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -3589,8 +3512,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -3669,8 +3591,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -3694,8 +3615,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -3719,8 +3639,7 @@
           "description": "The ID of the JMS destination to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -3750,8 +3669,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -3788,8 +3706,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -3813,8 +3730,7 @@
           "description": "name of installer instance to use (e.g. OAuthInstaller)"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -3884,8 +3800,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -3909,8 +3824,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -3934,8 +3848,7 @@
           "description": "The ID of the resource document to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -3965,8 +3878,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -4003,8 +3915,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -4078,8 +3989,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -4103,8 +4013,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -4128,8 +4037,7 @@
           "description": "The ID of the listen port to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -4159,8 +4067,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -4197,8 +4104,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -4229,8 +4135,7 @@
           "description": "Optional, note this is a query parameter, not a form key-value. Select which Solution Kit ID(s) in the uploaded SKAR to upgrade."
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -4261,8 +4166,7 @@
           "description": "GUID and instance modifier of child solution kits to delete"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -4305,8 +4209,7 @@
           "description": "Key filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -4330,8 +4233,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -4355,8 +4257,7 @@
           "description": "The ID of the custom key value to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -4386,8 +4287,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -4424,8 +4324,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -4477,8 +4376,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -4502,8 +4400,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -4521,8 +4418,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -4546,8 +4442,7 @@
           "description": "The ID of the revocation checking policy to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -4577,8 +4472,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -4656,8 +4550,7 @@
           "description": "Service ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -4681,8 +4574,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -4700,8 +4592,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -4725,8 +4616,7 @@
           "description": "The ID of the sample message to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -4756,8 +4646,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -4819,8 +4708,7 @@
           "description": "Name filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -4844,8 +4732,7 @@
           "description": "The ID of the group to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -4863,8 +4750,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -5560,8 +5446,7 @@
           "description": "True to include gateway configurations. Includes audit configuration. False by default.\r\n1.0.4"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -5611,8 +5496,7 @@
           "description": "The optional base-64 encoded passphrase to use for the encryption key when\n                             encrypting passwords.\r\n1.0.1"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -5664,8 +5548,7 @@
           "description": "The optional base-64 encoded passphrase to use for the encryption key when\n                             encrypting passwords.\r\n1.0.1"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -5768,8 +5651,7 @@
           "description": "True to export only dependencies. False by default.\r\n1.0.3"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -5819,8 +5701,7 @@
           "description": "Security zone ID filter. To list all assertions with no security zones applied use the\n                        default ID: 0000000000000000ffffffffffffffff"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -5838,8 +5719,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -5863,8 +5743,7 @@
           "description": "Fully qualified name of the assertion"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -5894,8 +5773,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -5979,8 +5857,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -6010,8 +5887,7 @@
           "description": "The comment to add to the policy version when creating the policy"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -6029,8 +5905,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -6054,8 +5929,7 @@
           "description": "The ID of the policy to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -6098,8 +5972,7 @@
           "description": "The comment to add to the policy version when updating the policy"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -6175,8 +6048,7 @@
           "description": "Comment filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -6243,8 +6115,7 @@
           "description": ""
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -6268,8 +6139,7 @@
           "description": ""
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -6301,8 +6171,7 @@
           "description": ""
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -6333,8 +6202,7 @@
           "description": ""
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -6366,8 +6234,7 @@
           "description": "How deep to search for the dependencies. 0 for none, 1 for immediate dependencies, -1 for full depth search\r\n1.0.1"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -6476,8 +6343,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -6501,8 +6367,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -6526,8 +6391,7 @@
           "description": "The ID of the Cassandra connection to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -6557,8 +6421,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -6595,8 +6458,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -6655,8 +6517,7 @@
           "description": "Optionally include the module data bytes, defaults to false if not specified."
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -6680,8 +6541,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -6712,8 +6572,7 @@
           "description": "Optionally include the module data bytes, defaults to false if not specified."
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -6743,8 +6602,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -6781,8 +6639,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -6843,8 +6700,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -6868,8 +6724,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -6893,8 +6748,7 @@
           "description": "The ID of the Policy Backed Service to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -6924,8 +6778,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -6962,8 +6815,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7005,8 +6857,7 @@
           "description": "Alias filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7030,8 +6881,7 @@
           "description": "The ID of the private key to retrieve"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7061,8 +6911,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -7092,8 +6941,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -7130,8 +6978,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7185,8 +7032,7 @@
           "description": "The signature hash to use. Defaults to 'Automatic'"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7218,8 +7064,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7237,8 +7082,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7256,8 +7100,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7275,8 +7118,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7313,8 +7155,7 @@
           "description": "The signature hash to use. Defaults to 'Automatic'"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7348,8 +7189,7 @@
           "description": "The special purpose to mark the key with. Can specify more then one special purposes."
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7381,8 +7221,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7441,8 +7280,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7466,8 +7304,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -7491,8 +7328,7 @@
           "description": "The ID of the policy alias to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7522,8 +7358,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -7560,8 +7395,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7620,8 +7454,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7645,8 +7478,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -7670,8 +7502,7 @@
           "description": "The ID of the service alias to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7701,8 +7532,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -7739,8 +7569,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7782,8 +7611,7 @@
           "description": "Login filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7807,8 +7635,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -7847,8 +7674,7 @@
           "description": "The format of the password. \"plain\" or \"sha512crypt\""
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7872,8 +7698,7 @@
           "description": "The ID of the user"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7903,8 +7728,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7941,8 +7765,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7966,8 +7789,7 @@
           "description": "The ID of the user to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -7997,8 +7819,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -8093,8 +7914,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -8118,8 +7938,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -8143,8 +7962,7 @@
           "description": "The ID of the active connector to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -8174,8 +7992,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -8212,8 +8029,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -8292,8 +8108,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -8317,8 +8132,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -8342,8 +8156,7 @@
           "description": "The ID of the scheduled task to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -8373,8 +8186,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -8411,8 +8223,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -8491,8 +8302,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -8516,8 +8326,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -8541,8 +8350,7 @@
           "description": "The ID of the Cassandra connection to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -8572,8 +8380,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -8610,8 +8417,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -8668,8 +8474,7 @@
           "description": "Ordinal filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -8693,8 +8498,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -8718,8 +8522,7 @@
           "description": "The ID of the firewall rule to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -8749,8 +8552,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -8787,8 +8589,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -8864,8 +8665,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -8889,8 +8689,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -8908,8 +8707,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -8933,8 +8731,7 @@
           "description": "The ID of the Log Sink Configuration to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -8964,8 +8761,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -9016,8 +8812,7 @@
           "description": "How deep to search for the dependencies. 0 for none, 1 for immediate dependencies, -1 for full depth search\r\n1.0.1"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -9102,8 +8897,7 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -9127,8 +8921,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -9152,8 +8945,7 @@
           "description": "The ID of the JDBC connection to return"
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -9183,8 +8975,7 @@
           }
         }],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -9221,8 +9012,7 @@
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "",
+          "200": {            "description": "OK",
             "schema": {
               "type": "string"
             },
