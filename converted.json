@@ -17,6 +17,10 @@
   {
     "name": "Folders",
     "description": "Folders are used to organize the policies, services, and aliases you have on the Gateway."
+  },
+  {
+    "name": "Roles",
+    "description": "A role defines a set of permissions that a user or group is allowed to perform. A user must be assigned to at least one of these roles in order to connect to the Gateway and perform administrative tasks in the Policy Manager or through the API."
   }],
   "security": [{
     "simple": []
@@ -406,8 +410,8 @@
       "get": {
         "tags": ["Folders"],
         "description": "<p>Returns a list of folders. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p class=\"italicize\">Examples:</p>\n <div class=\"code indent\"><pre>/restman/1.0/folders?name=MyFolder</pre></div>\n <p>Returns folder with name \"MyFolder\".</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList",
-        "summary": "10Folders",
-        "operationId": "10FoldersGet",
+        "summary": "List All Folders",
+        "operationId": "FoldersGet",
         "produces": ["application/xml"],
         "parameters": [{
           "name": "sort",
@@ -451,7 +455,8 @@
           "description": "Security zone ID filter"
         }],
         "responses": {
-          "200": {            "description": "OK",
+          "200": {
+            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -463,8 +468,8 @@
       "post": {
         "tags": ["Folders"],
         "description": "Creates a new folder\r\nCreate",
-        "summary": "10Folders",
-        "operationId": "10FoldersPost",
+        "summary": " Create a New Folder",
+        "operationId": "FoldersPost",
         "produces": ["application/xml"],
         "parameters": [{
           "name": "String",
@@ -476,7 +481,8 @@
           }
         }],
         "responses": {
-          "200": {            "description": "OK",
+          "200": {
+            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -490,12 +496,13 @@
       "get": {
         "tags": ["Folders"],
         "description": "Returns a template, which is an example folder that can be used as a reference for what folder objects should\n look like.\r\nTemplate",
-        "summary": "10FoldersTemplate",
-        "operationId": "10FoldersTemplateGet",
+        "summary": "Folders Template",
+        "operationId": "FoldersTemplateGet",
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
-          "200": {            "description": "OK",
+          "200": {
+            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -509,8 +516,8 @@
       "get": {
         "tags": ["Folders"],
         "description": "Returns a folder with the given ID.\r\nGet",
-        "summary": "10FoldersById",
-        "operationId": "10FoldersByIdGet",
+        "summary": "List Folders By ID",
+        "operationId": "FoldersByIdGet",
         "produces": ["application/xml"],
         "parameters": [{
           "name": "id",
@@ -520,7 +527,8 @@
           "description": "The ID of the folder to return"
         }],
         "responses": {
-          "200": {            "description": "OK",
+          "200": {
+            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -532,8 +540,8 @@
       "put": {
         "tags": ["Folders"],
         "description": "Creates or Updates an existing folder. If a folder with the given ID does not exist one\n will be created, otherwise the existing one will be updated.\r\nCreate Or Update",
-        "summary": "10FoldersById",
-        "operationId": "10FoldersByIdPut",
+        "summary": "Creates or Updates Folders By ID",
+        "operationId": "FoldersByIdPut",
         "produces": ["application/xml"],
         "parameters": [{
           "name": "id",
@@ -551,7 +559,8 @@
           }
         }],
         "responses": {
-          "200": {            "description": "OK",
+          "200": {
+            "description": "OK",
             "schema": {
               "type": "object"
             },
@@ -563,8 +572,8 @@
       "delete": {
         "tags": ["Folders"],
         "description": "Deletes an existing folder.\r\nDelete",
-        "summary": "10FoldersById",
-        "operationId": "10FoldersByIdDelete",
+        "summary": "Deletes Folders By ID",
+        "operationId": "FoldersByIdDelete",
         "produces": ["application/xml"],
         "parameters": [{
           "name": "id",
@@ -582,7 +591,7 @@
         }],
         "responses": {
           "200": {
-            "description": ""
+            "description": "OK"
           }
         },
         "security": [{"simple": []}]
@@ -592,8 +601,8 @@
       "get": {
         "tags": ["Folders"],
         "description": "Returns the list of dependencies for this entity.\r\nGet Dependencies\r\nGet Dependencies",
-        "summary": "10FoldersDependenciesById",
-        "operationId": "10FoldersDependenciesByIdGet",
+        "summary": "List Folders Dependencies By ID",
+        "operationId": "FoldersDependenciesByIdGet",
         "produces": ["application/xml"],
         "parameters": [{
           "name": "id",
@@ -611,7 +620,8 @@
           "description": "How deep to search for the dependencies. 0 for none, 1 for immediate dependencies, -1 for full depth search\r\n1.0.1"
         }],
         "responses": {
-          "200": {            "description": "OK",
+          "200": {
+            "description": "OK",
             "schema": {
               "type": "string"
             },
@@ -623,9 +633,10 @@
     },
     "/1.0/roles": {
       "get": {
+        "tags": ["Roles"],
         "description": "<p>Returns a list of roles. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p class=\"italicize\">Examples:</p>\n <div class=\"code indent\"><pre>/restman/1.0/roles?name=MyRole</pre></div>\n <p>Returns role with name \"MyRole\".</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList",
-        "summary": "10Roles",
-        "operationId": "10RolesGet",
+        "summary": "List All Roles",
+        "operationId": "RolesGet",
         "produces": ["application/xml"],
         "parameters": [{
           "name": "sort",
@@ -670,9 +681,10 @@
         "security": [{"simple": []}]
       },
       "post": {
+        "tags": ["Roles"],
         "description": "Creates a new role\r\nCreate",
-        "summary": "10Roles",
-        "operationId": "10RolesPost",
+        "summary": "Create a New Roles",
+        "operationId": "RolesPost",
         "produces": ["application/xml"],
         "parameters": [{
           "name": "String",
@@ -696,9 +708,10 @@
     },
     "/1.0/roles/{id}/assignments": {
       "put": {
+        "tags": ["Roles"],
         "description": "Adds role assignments to the role.\r\nAdd Assignment",
-        "summary": "10RolesAssignmentsById",
-        "operationId": "10RolesAssignmentsByIdPut",
+        "summary": "Adds a Roles Assignments By ID",
+        "operationId": "RolesAssignmentsByIdPut",
         "produces": ["application/xml"],
         "parameters": [{
           "name": "String",
@@ -723,9 +736,10 @@
         "security": [{"simple": []}]
       },
       "delete": {
+        "tags": ["Roles"],
         "description": "Removes role assignments\r\nDelete Assignment",
-        "summary": "10RolesAssignmentsById",
-        "operationId": "10RolesAssignmentsByIdDelete",
+        "summary": "Delete Roles Assignments By ID",
+        "operationId": "RolesAssignmentsByIdDelete",
         "produces": ["application/xml"],
         "parameters": [{
           "name": "id",
@@ -747,9 +761,10 @@
     },
     "/1.0/roles/{id}/assignments/template/addassignments": {
       "get": {
+        "tags": ["Roles"],
         "description": "Returns a template, which is an example add assignments context that can be used as a reference for what add\n assignments context objects should look like.\r\nAdd Assignments Context Template",
-        "summary": "10RolesAssignmentsTemplateAddassignments",
-        "operationId": "10RolesAssignmentsTemplateAddassignmentsByIdGet",
+        "summary": "Roles Assignments Template Add assignments",
+        "operationId": "RolesAssignmentsTemplateAddassignmentsByIdGet",
         "produces": ["application/xml"],
         "parameters": [{
           "name": "id",
@@ -771,9 +786,10 @@
     },
     "/1.0/roles/{id}": {
       "get": {
+        "tags": ["Roles"],
         "description": "Returns a role with the given ID.\r\nGet",
-        "summary": "10RolesById",
-        "operationId": "10RolesByIdGet",
+        "summary": "List Roles By ID",
+        "operationId": "RolesByIdGet",
         "produces": ["application/xml"],
         "parameters": [{
           "name": "id",
@@ -793,9 +809,10 @@
         "security": [{"simple": []}]
       },
       "put": {
+        "tags": ["Roles"],
         "description": "Creates or Updates an existing role. If a role with the given ID does not exist one\n will be created, otherwise the existing one will be updated.\r\nCreate Or Update",
-        "summary": "10RolesById",
-        "operationId": "10RolesByIdPut",
+        "summary": "Create or Update Roles By ID",
+        "operationId": "RolesByIdPut",
         "produces": ["application/xml"],
         "parameters": [{
           "name": "id",
@@ -823,9 +840,10 @@
         "security": [{"simple": []}]
       },
       "delete": {
+        "tags": ["Roles"],
         "description": "Deletes an existing role.\r\nDelete",
-        "summary": "10RolesById",
-        "operationId": "10RolesByIdDelete",
+        "summary": "Delete Roles By ID",
+        "operationId": "RolesByIdDelete",
         "produces": ["application/xml"],
         "parameters": [{
           "name": "id",
@@ -844,9 +862,10 @@
     },
     "/1.0/roles/template": {
       "get": {
+        "tags": ["Roles"],
         "description": "Returns a template, which is an example role that can be used as a reference for what role objects should look\n like.\r\nTemplate",
-        "summary": "10RolesTemplate",
-        "operationId": "10RolesTemplateGet",
+        "summary": "Roles Template",
+        "operationId": "RolesTemplateGet",
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
