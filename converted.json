@@ -7,29 +7,38 @@
   },
   "host": "ssg92.ca.com:8443",
   "basePath": "/restman/",
-  "tags": [{
+  "tags": [
+    {
+      "name": "Folders",
+      "description": "Folders are used to organize the policies, services, and aliases you have on the Gateway."
+    },
+    {
     "name": "GenericEntities",
     "description": "A generic entities is used by some modular assertions to represent any entity."
-  }, {
-    "name": "InterfaceTags",
-    "description": "Interfaces are used to specify IP addresses that can be monitored by a listen port. Defining an interface gives you greater control over the IP addresses that will be monitored."
-  },
-  {
-    "name": "Folders",
-    "description": "Folders are used to organize the policies, services, and aliases you have on the Gateway."
-  },
-  {
-    "name": "Roles",
-    "description": "A role defines a set of permissions that a user or group is allowed to perform. A user must be assigned to at least one of these roles in order to connect to the Gateway and perform administrative tasks in the Policy Manager or through the API."
   },
   {
     "name": "httpConfigurations",
     "description": "HTTP Configuration are used to configure various options to be used by the Gateway for HTTP/HTTPS connections. For example, you can configure the login credentials for an HTTPS host, define a proxy for the host, or specify a private key to be used for authentication."
   },
   {
-    "name": "identityProviders",
+    "name": "IdentityProviders",
     "description": "An Identity provider is used to store and provide identities."
-  }],
+  },
+  {
+    "name": "InterfaceTags",
+    "description": "Interfaces are used to specify IP addresses that can be monitored by a listen port. Defining an interface gives you greater control over the IP addresses that will be monitored."
+  },
+
+  {
+    "name": "Roles",
+    "description": "A role defines a set of permissions that a user or group is allowed to perform. A user must be assigned to at least one of these roles in order to connect to the Gateway and perform administrative tasks in the Policy Manager or through the API."
+  },
+  {
+    "name": "SiteMinderConfiguration",
+    "description": "A SiteMinder Configuration describes a connection to site minder."
+  }
+
+  ],
   "security": [{
     "simple": []
   }],
@@ -662,7 +671,7 @@
 
     "/1.0/identityProviders": {
       "get": {
-        "tags": ["identityProviders"],
+        "tags": ["IdentityProviders"],
         "description": "<p>Returns a list of identity providers. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p class=\"italicize\">Examples:</p>\n <div class=\"code indent\"><pre>/restman/1.0/identityProviders?name=MyIDProvider</pre></div>\n <p>Returns identity provider with name \"MyIDProvider\".</p>\n <div class=\"code indent\"><pre>/restman/1.0/identityProviders?type=LDAP</pre></div>\n <p>Returns identity providers of LDAP type</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList",
         "summary": "List All Identity Providers",
         "operationId": "IdentityProvidersGet",
@@ -720,7 +729,7 @@
         "security": [{"simple": []}]
       },
       "post": {
-        "tags": ["identityProviders"],
+        "tags": ["IdentityProviders"],
         "description": "Creates an identity provider\r\nCreate",
         "summary": "Create an Identity Providers",
         "operationId": "IdentityProvidersPost",
@@ -747,7 +756,7 @@
     },
     "/1.0/identityProviders/template": {
       "get": {
-        "tags": ["identityProviders"],
+        "tags": ["IdentityProviders"],
         "description": "Returns a template, which is an example identity provider that can be used as a reference for what identity\n provider objects should look like.\r\nTemplate",
         "summary": "Identity Providers Template",
         "operationId": "IdentityProvidersTemplateGet",
@@ -766,7 +775,7 @@
     },
     "/1.0/identityProviders/{identityProviderID}": {
       "get": {
-        "tags": ["identityProviders"],
+        "tags": ["IdentityProviders"],
         "description": "Returns an identity provider with the given ID.\r\nGet",
         "summary": "List Identity Providers By Identity Provider ID",
         "operationId": "IdentityProvidersByIdentityProviderIDGet",
@@ -789,7 +798,7 @@
         "security": [{"simple": []}]
       },
       "put": {
-        "tags": ["identityProviders"],
+        "tags": ["IdentityProviders"],
         "description": "Creates or Updates an existing identity provider. If an identity provider with the given ID does not exist one\n will be created, otherwise the existing one will be updated.\r\nCreate Or Update",
         "summary": "Create or Update Identity Providers By Identity Provider ID",
         "operationId": "IdentityProvidersByIdentityProviderIDPut",
@@ -820,7 +829,7 @@
         "security": [{"simple": []}]
       },
       "delete": {
-        "tags": ["identityProviders"],
+        "tags": ["IdentityProviders"],
         "description": "Deletes an existing identity provider.\r\nDelete",
         "summary": "Delete Identity Providers By Identity Provider ID",
         "operationId": "IdentityProvidersByIdentityProviderIDDelete",
@@ -842,7 +851,7 @@
     },
     "/1.0/identityProviders/{identityProviderID}/groups": {
       "get": {
-        "tags": ["identityProviders"],
+        "tags": ["IdentityProviders"],
         "description": "<p>Returns a list of groups. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList Groups",
         "summary": "List All Identity Providers Groups",
         "operationId": "IdentityProvidersGroupsByIdentityProviderIDGet",
@@ -892,7 +901,7 @@
     },
     "/1.0/identityProviders/{identityProviderID}/groups/template": {
       "get": {
-        "tags": ["identityProviders"],
+        "tags": ["IdentityProviders"],
         "description": "Returns a template, which is an example group that can be used as a reference for what group objects should look\n like.\r\nGroup Template",
         "summary": " Identity Providers Groups Template",
         "operationId": "IdentityProvidersGroupsTemplateByIdentityProviderIDGet",
@@ -917,7 +926,7 @@
     },
     "/1.0/identityProviders/{identityProviderID}/groups/{groupID}": {
       "get": {
-        "tags": ["identityProviders"],
+        "tags": ["IdentityProviders"],
         "description": "Returns a group with the given ID.\r\nGet Group",
         "summary": "List Identity Providers Groups By ID",
         "operationId": "IdentityProvidersGroupsByIdentityProviderIDAndGroupIDGet",
@@ -948,7 +957,7 @@
     },
     "/1.0/identityProviders/{identityProviderID}/users": {
       "get": {
-        "tags": ["identityProviders"],
+        "tags": ["IdentityProviders"],
         "description": "<p>Returns a list of users. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList Users",
         "summary": "List All Identity Providers Users",
         "operationId": "IdentityProvidersUsersByIdentityProviderIDGet",
@@ -995,7 +1004,7 @@
         "security": [{"simple": []}]
       },
       "post": {
-        "tags": ["identityProviders"],
+        "tags": ["IdentityProviders"],
         "description": "Creates a new user. New users can only be created on the internal identity provider.\r\nCreate User",
         "summary": "Creates New Identity Providers Users",
         "operationId": "IdentityProvidersUsersByIdentityProviderIDPost",
@@ -1028,7 +1037,7 @@
     },
     "/1.0/identityProviders/{identityProviderID}/users/{userID}/password": {
       "put": {
-        "tags": ["identityProviders"],
+        "tags": ["IdentityProviders"],
         "description": "Change this user's password\r\nChange User Password",
         "summary": "Update Identity Providers Users Password",
         "operationId": "IdentityProvidersUsersPasswordByIdentityProviderIDAndUserIDPut",
@@ -1074,7 +1083,7 @@
     },
     "/1.0/identityProviders/{identityProviderID}/users/template": {
       "get": {
-        "tags": ["identityProviders"],
+        "tags": ["IdentityProviders"],
         "description": "Returns a template, which is an example user that can be used as a reference for what user objects should look\n like.\r\nTemplate User",
         "summary": "Identity Providers Users Template",
         "operationId": "IdentityProvidersUsersTemplateByIdentityProviderIDGet",
@@ -1099,7 +1108,7 @@
     },
     "/1.0/identityProviders/{identityProviderID}/users/{userID}": {
       "get": {
-        "tags": ["identityProviders"],
+        "tags": ["IdentityProviders"],
         "description": "Returns a user with the given ID.\r\nGet User",
         "summary": "List Identity Providers Users By ID",
         "operationId": "IdentityProvidersUsersByIdentityProviderIDAndUserIDGet",
@@ -1128,7 +1137,7 @@
         "security": [{"simple": []}]
       },
       "put": {
-        "tags": ["identityProviders"],
+        "tags": ["IdentityProviders"],
         "description": "Updates an existing user\r\nUpdate User",
         "summary": "Update Identity Providers Users By ID",
         "operationId": "IdentityProvidersUsersByIdentityProviderIDAndUserIDPut",
@@ -1165,7 +1174,7 @@
         "security": [{"simple": []}]
       },
       "delete": {
-        "tags": ["identityProviders"],
+        "tags": ["IdentityProviders"],
         "description": "Deletes an existing user\r\nDelete User",
         "summary": "Delete Identity Providers Users By ID",
         "operationId": "10IdentityProvidersUsersByIdentityProviderIDAndUserIDDelete",
@@ -1193,7 +1202,7 @@
     },
     "/1.0/identityProviders/{identityProviderID}/users/{userID}/certificate": {
       "get": {
-        "tags": ["identityProviders"],
+        "tags": ["IdentityProviders"],
         "description": "Gets the user's certificate\r\nGet User Certificate",
         "summary": "List Identity Providers Users Certificate By ID",
         "operationId": "10IdentityProvidersUsersCertificateByIdentityProviderIDAndUserIDGet",
@@ -1222,7 +1231,7 @@
         "security": [{"simple": []}]
       },
       "put": {
-        "tags": ["identityProviders"],
+        "tags": ["IdentityProviders"],
         "description": "Set this user's certificate\r\nSet User Certificate",
         "summary": "Set Identity Providers Users Certificate By ID",
         "operationId": "IdentityProvidersUsersCertificateByIdentityProviderIDAndUserIDPut",
@@ -1259,7 +1268,7 @@
         "security": [{"simple": []}]
       },
       "delete": {
-        "tags": ["identityProviders"],
+        "tags": ["IdentityProviders"],
         "description": "Removes the certificate from the user\r\nDelete User Certificate",
         "summary": "Delete Identity Providers Users Certificate By ID",
         "operationId": "10IdentityProvidersUsersCertificateByIdentityProviderIDAndUserIDDelete",
@@ -1715,24 +1724,12 @@
       }
     },
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     "/1.0/siteMinderConfigurations": {
       "get": {
+        "tags": ["SiteMinderConfiguration"],
         "description": "<p>Returns a list of SiteMinder configurations. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p class=\"italicize\">Examples:</p>\n <div class=\"code indent\"><pre>/restman/1.0/siteMinderConfigurations?name=MySiteMinderConfiguration</pre></div>\n <p>Returns SiteMinder configuration with name \"MySiteMinderConfiguration\".</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList",
-        "summary": "10SiteMinderConfigurations",
-        "operationId": "10SiteMinderConfigurationsGet",
+        "summary": "List All SiteMinder Configurations",
+        "operationId": "SiteMinderConfigurationsGet",
         "produces": ["application/xml"],
         "parameters": [{
           "name": "sort",
@@ -1786,9 +1783,10 @@
         "security": [{"simple": []}]
       },
       "post": {
+        "tags": ["SiteMinderConfiguration"],
         "description": "Creates a new SiteMinder configuration\r\nCreate",
-        "summary": "10SiteMinderConfigurations",
-        "operationId": "10SiteMinderConfigurationsPost",
+        "summary": "Create SiteMinder Configurations",
+        "operationId": "SiteMinderConfigurationsPost",
         "produces": ["application/xml"],
         "parameters": [{
           "name": "String",
@@ -1812,9 +1810,10 @@
     },
     "/1.0/siteMinderConfigurations/{id}": {
       "get": {
+        "tags": ["SiteMinderConfiguration"],
         "description": "Returns a SiteMinder configuration with the given ID.\r\nGet",
-        "summary": "10SiteMinderConfigurationsById",
-        "operationId": "10SiteMinderConfigurationsByIdGet",
+        "summary": "List SiteMinder Configurations By ID",
+        "operationId": "SiteMinderConfigurationsByIdGet",
         "produces": ["application/xml"],
         "parameters": [{
           "name": "id",
@@ -1834,9 +1833,10 @@
         "security": [{"simple": []}]
       },
       "put": {
+        "tags": ["SiteMinderConfiguration"],
         "description": "Creates or Updates an existing SiteMinder configuration. If a SiteMinder configuration with the given ID does not\n exist one\n will be created, otherwise the existing one will be updated.\r\nUpdate",
-        "summary": "10SiteMinderConfigurationsById",
-        "operationId": "10SiteMinderConfigurationsByIdPut",
+        "summary": "Create or Update SiteMinder Configurations By ID",
+        "operationId": "SiteMinderConfigurationsByIdPut",
         "produces": ["application/xml"],
         "parameters": [{
           "name": "id",
@@ -1864,9 +1864,10 @@
         "security": [{"simple": []}]
       },
       "delete": {
+        "tags": ["SiteMinderConfiguration"],
         "description": "Deletes an existing SiteMinder configuration.\r\nDelete",
-        "summary": "10SiteMinderConfigurationsById",
-        "operationId": "10SiteMinderConfigurationsByIdDelete",
+        "summary": "Delete SiteMinder Configurations By ID",
+        "operationId": "SiteMinderConfigurationsByIdDelete",
         "produces": ["application/xml"],
         "parameters": [{
           "name": "id",
@@ -1885,9 +1886,10 @@
     },
     "/1.0/siteMinderConfigurations/template": {
       "get": {
+        "tags": ["SiteMinderConfiguration"],
         "description": "Returns a template, which is an example SiteMinder configuration that can be used as a reference for what\n SiteMinder configuration objects should look like.\r\nTemplate",
-        "summary": "10SiteMinderConfigurationsTemplate",
-        "operationId": "10SiteMinderConfigurationsTemplateGet",
+        "summary": "SiteMinder Configurations Template",
+        "operationId": "SiteMinderConfigurationsTemplateGet",
         "produces": ["application/xml"],
         "parameters": [],
         "responses": {
@@ -1901,6 +1903,9 @@
         "security": [{"simple": []}]
       }
     },
+
+
+    
     "/1.0/passwords": {
       "get": {
         "description": "<p>Returns a list of secure passwords. Can optionally sort the resulting list in ascending or\n descending order. Other params given will be used as search values.</p>\n <p class=\"italicize\">Examples:</p>\n <div class=\"code indent\"><pre>/restman/1.0/passwords?name=MyPassword</pre></div>\n <p>Returns secure password with name \"MyPassword\".</p>\n <div class=\"code indent\"><pre>/restman/1.0/passwords?type=Password&name=MyPassword&name=MyOtherPassword</pre></div>\n <p>Returns secure password of Password type with name either \"MyPassword\" or\n \"MyOtherPassword\"</p>\n <p>If a parameter is not a valid search value a bad request error will be returned.</p>\r\nList",
